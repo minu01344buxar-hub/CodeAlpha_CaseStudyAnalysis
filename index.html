@@ -1,0 +1,1414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Moderna, Inc. — Biotechnology Case Study Analysis (12 Slides)</title>
+  <meta name="description" content="A comprehensive 12-slide case study analysis of Moderna, Inc., examining mRNA platform innovation, 4-component LNPs, commercial products (Spikevax, mRESVIA), challenges, IP litigation, and market impact.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --bg-dark: #090e17;
+      --bg-surface: #0f172a;
+      --card-bg: #1e293b;
+      --card-border: #334155;
+      --accent-cyan: #0ea5e9;
+      --accent-teal: #14b8a6;
+      --accent-coral: #f43f5e;
+      --accent-amber: #f59e0b;
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --text-dim: #64748b;
+      --transition-fast: 0.25s ease;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: var(--bg-dark);
+      color: var(--text-main);
+      overflow: hidden;
+      height: 100vh;
+      width: 100vw;
+      user-select: none;
+    }
+
+    /* Top Navigation Bar */
+    header.deck-header {
+      height: 58px;
+      background: rgba(15, 23, 42, 0.95);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--card-border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 24px;
+      position: relative;
+      z-index: 50;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .brand-badge {
+      background: linear-gradient(135deg, var(--accent-cyan), var(--accent-teal));
+      color: #04121e;
+      font-weight: 800;
+      font-size: 11px;
+      padding: 3px 8px;
+      border-radius: 6px;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+
+    .brand-title {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-main);
+      letter-spacing: -0.2px;
+    }
+
+    .slide-progress-wrap {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .slide-counter {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--accent-cyan);
+      background: rgba(14, 165, 233, 0.1);
+      padding: 4px 10px;
+      border-radius: 20px;
+      border: 1px solid rgba(14, 165, 233, 0.25);
+    }
+
+    .deck-controls {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn-ctrl {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      color: var(--text-main);
+      padding: 6px 14px;
+      border-radius: 8px;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: all var(--transition-fast);
+      text-decoration: none;
+    }
+
+    .btn-ctrl:hover {
+      background: #283548;
+      border-color: var(--accent-cyan);
+      color: #fff;
+      transform: translateY(-1px);
+    }
+
+    .btn-ctrl.active {
+      background: rgba(14, 165, 233, 0.2);
+      border-color: var(--accent-cyan);
+      color: var(--accent-cyan);
+    }
+
+    .btn-primary-action {
+      background: linear-gradient(135deg, #0284c7, #0ea5e9);
+      border: none;
+      color: #fff;
+    }
+
+    .btn-primary-action:hover {
+      background: linear-gradient(135deg, #0369a1, #0284c7);
+    }
+
+    /* Dynamic Top Progress Bar */
+    .progress-bar-container {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    .progress-bar-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--accent-cyan), var(--accent-teal));
+      width: 8.33%;
+      transition: width 0.3s ease;
+    }
+
+    /* Main Stage */
+    main.deck-stage {
+      height: calc(100vh - 58px);
+      width: 100vw;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px 32px;
+    }
+
+    .slide {
+      position: absolute;
+      width: min(1360px, 94vw);
+      height: min(760px, 86vh);
+      background: var(--bg-surface);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.7);
+      padding: 36px 44px;
+      opacity: 0;
+      transform: scale(0.97) translateY(12px);
+      pointer-events: none;
+      transition: opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1), transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      overflow: hidden;
+    }
+
+    .slide.active {
+      opacity: 1;
+      transform: scale(1) translateY(0);
+      pointer-events: auto;
+      z-index: 10;
+    }
+
+    /* Slide Header */
+    .slide-meta {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 8px;
+    }
+
+    .slide-tag {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--accent-cyan);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .slide-title {
+      font-size: 26px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      color: var(--text-main);
+      margin-bottom: 6px;
+    }
+
+    .slide-subtitle {
+      font-size: 13.5px;
+      color: var(--text-muted);
+      line-height: 1.4;
+      margin-bottom: 20px;
+    }
+
+    /* Layout Grids */
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      flex: 1;
+      min-height: 0;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      flex: 1;
+      min-height: 0;
+    }
+
+    .grid-4 {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+
+    .grid-split {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 24px;
+      flex: 1;
+      min-height: 0;
+    }
+
+    /* Content Cards */
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 12px;
+      padding: 20px 22px;
+      display: flex;
+      flex-direction: column;
+      overflow-y: auto;
+    }
+
+    .card::-webkit-scrollbar {
+      width: 5px;
+    }
+    .card::-webkit-scrollbar-thumb {
+      background: var(--card-border);
+      border-radius: 4px;
+    }
+
+    .card-title {
+      font-size: 14.5px;
+      font-weight: 700;
+      color: var(--accent-cyan);
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .card-title.teal { color: var(--accent-teal); }
+    .card-title.coral { color: var(--accent-coral); }
+    .card-title.amber { color: var(--accent-amber); }
+
+    .bullet-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .bullet-list li {
+      font-size: 12.5px;
+      line-height: 1.5;
+      color: #e2e8f0;
+      position: relative;
+      padding-left: 18px;
+    }
+
+    .bullet-list li::before {
+      content: "•";
+      position: absolute;
+      left: 2px;
+      color: var(--accent-cyan);
+      font-weight: bold;
+      font-size: 16px;
+      line-height: 1;
+    }
+
+    .bullet-list.teal li::before { color: var(--accent-teal); }
+    .bullet-list.coral li::before { color: var(--accent-coral); }
+    .bullet-list.amber li::before { color: var(--accent-amber); }
+
+    .highlight-strong {
+      color: #fff;
+      font-weight: 600;
+    }
+
+    /* Stat Box */
+    .stat-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 12px;
+      padding: 16px 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .stat-number {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 32px;
+      font-weight: 800;
+      color: var(--accent-cyan);
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+
+    .stat-number.teal { color: var(--accent-teal); }
+    .stat-number.amber { color: var(--accent-amber); }
+    .stat-number.coral { color: var(--accent-coral); }
+
+    .stat-label {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--text-main);
+      margin-bottom: 4px;
+    }
+
+    .stat-desc {
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    /* Visual Media Cards */
+    .media-card {
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid var(--card-border);
+      position: relative;
+      background: #000;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .media-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.5s ease;
+    }
+
+    .media-card:hover img {
+      transform: scale(1.03);
+    }
+
+    .media-caption {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(to top, rgba(9, 14, 23, 0.95), transparent);
+      padding: 14px 18px 10px;
+      font-size: 11.5px;
+      color: #e2e8f0;
+      font-weight: 500;
+    }
+
+    /* Comparison Table */
+    .comp-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 12px;
+    }
+
+    .comp-table th {
+      text-align: left;
+      padding: 10px 14px;
+      background: rgba(255, 255, 255, 0.04);
+      color: var(--accent-cyan);
+      border-bottom: 1px solid var(--card-border);
+      font-weight: 600;
+    }
+
+    .comp-table td {
+      padding: 10px 14px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      color: #cbd5e1;
+      vertical-align: top;
+      line-height: 1.4;
+    }
+
+    .comp-table tr:hover td {
+      background: rgba(255, 255, 255, 0.02);
+    }
+
+    /* Speaker Notes Drawer */
+    .notes-drawer {
+      position: fixed;
+      bottom: -320px;
+      left: 0;
+      width: 100vw;
+      height: 280px;
+      background: #0b1325;
+      border-top: 2px solid var(--accent-cyan);
+      box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.8);
+      z-index: 100;
+      transition: bottom 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      display: flex;
+      flex-direction: column;
+      padding: 18px 32px;
+    }
+
+    .notes-drawer.open {
+      bottom: 0;
+    }
+
+    .notes-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 12px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--card-border);
+    }
+
+    .notes-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--accent-cyan);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .notes-content {
+      font-size: 13px;
+      line-height: 1.6;
+      color: #e2e8f0;
+      overflow-y: auto;
+      white-space: pre-line;
+    }
+
+    /* Grid Overview Modal */
+    .grid-modal {
+      position: fixed;
+      top: 58px;
+      left: 0;
+      width: 100vw;
+      height: calc(100vh - 58px);
+      background: rgba(9, 14, 23, 0.96);
+      backdrop-filter: blur(16px);
+      z-index: 90;
+      padding: 32px 48px;
+      overflow-y: auto;
+      display: none;
+    }
+
+    .grid-modal.open {
+      display: block;
+    }
+
+    .grid-deck-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 20px;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .grid-slide-thumb {
+      background: var(--bg-surface);
+      border: 1px solid var(--card-border);
+      border-radius: 12px;
+      padding: 16px;
+      cursor: pointer;
+      transition: all var(--transition-fast);
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      height: 170px;
+    }
+
+    .grid-slide-thumb:hover {
+      border-color: var(--accent-cyan);
+      transform: translateY(-3px);
+      box-shadow: 0 10px 25px -5px rgba(14, 165, 233, 0.2);
+    }
+
+    .grid-slide-thumb.current {
+      border-color: var(--accent-teal);
+      background: #152238;
+    }
+
+    .thumb-num {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--accent-cyan);
+    }
+
+    .thumb-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: #fff;
+      line-height: 1.3;
+    }
+
+    .thumb-subtitle {
+      font-size: 11px;
+      color: var(--text-muted);
+      line-height: 1.4;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+    }
+
+    /* Print Stylesheet for clean 1-click PDF export */
+    @media print {
+      body {
+        overflow: visible !important;
+        height: auto !important;
+        background: #fff !important;
+        color: #000 !important;
+      }
+      header.deck-header,
+      .notes-drawer,
+      .grid-modal {
+        display: none !important;
+      }
+      main.deck-stage {
+        height: auto !important;
+        padding: 0 !important;
+        display: block !important;
+      }
+      .slide {
+        position: relative !important;
+        opacity: 1 !important;
+        transform: none !important;
+        width: 100% !important;
+        height: 100vh !important;
+        page-break-after: always !important;
+        break-after: page !important;
+        border: none !important;
+        box-shadow: none !important;
+        border-radius: 0 !important;
+        background: #0f172a !important;
+        color: #f8fafc !important;
+        padding: 40px 50px !important;
+        margin: 0 !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Header Controls -->
+  <header class="deck-header">
+    <div class="brand">
+      <span class="brand-badge">Case Study</span>
+      <span class="brand-title">Moderna, Inc. — Biotech Platform Innovation</span>
+    </div>
+
+    <div class="slide-progress-wrap">
+      <div class="slide-counter" id="slideCounter">SLIDE 01 / 12</div>
+    </div>
+
+    <div class="deck-controls">
+      <button class="btn-ctrl" id="prevBtn" title="Previous Slide (Left Arrow)">◀ Prev</button>
+      <button class="btn-ctrl" id="nextBtn" title="Next Slide (Right Arrow or Space)">Next ▶</button>
+      <button class="btn-ctrl" id="notesToggle" title="Toggle Presenter Speaker Notes (S)">
+        <span>🎤</span> Notes
+      </button>
+      <button class="btn-ctrl" id="gridToggle" title="Slide Overview Grid (G)">
+        <span>☷</span> Grid
+      </button>
+      <button class="btn-ctrl" id="printBtn" title="Print or Export to PDF (P)">
+        <span>🖨</span> Print / PDF
+      </button>
+      <a href="Moderna_Biotech_Case_Study_Presentation.pptx" download class="btn-ctrl btn-primary-action" title="Download editable PowerPoint deck">
+        <span>⬇</span> Download PPTX
+      </a>
+    </div>
+
+    <div class="progress-bar-container">
+      <div class="progress-bar-fill" id="progressBar"></div>
+    </div>
+  </header>
+
+  <!-- Slide Stage -->
+  <main class="deck-stage" id="deckStage">
+
+    <!-- SLIDE 1: Title & Executive Summary -->
+    <section class="slide active" data-index="1">
+      <div>
+        <div class="slide-meta">
+          <span class="slide-tag">01 | EXECUTIVE INTRODUCTION</span>
+        </div>
+        <h1 class="slide-title">Moderna, Inc.: The mRNA Platform Revolution</h1>
+        <p class="slide-subtitle">A Strategic Case Study on Molecular Innovation, Clinical Translation, Nanotechnology Delivery, and Market Impact</p>
+      </div>
+
+      <div class="grid-split">
+        <div class="card" style="justify-content: center;">
+          <div class="card-title">Transforming Biology into Programmable Software</div>
+          <ul class="bullet-list">
+            <li><span class="highlight-strong">Core Thesis:</span> Decoupled therapeutic drug discovery from classical organic chemistry. By using synthetic messenger RNA, the human cell's ribosome becomes the bioreactor.</li>
+            <li><span class="highlight-strong">Nanotechnology Delivery:</span> Overcame severe in vivo enzymatic degradation via specialized 4-component Lipid Nanoparticles (LNPs).</li>
+            <li><span class="highlight-strong">Commercial Validation:</span> Spikevax (COVID-19) validated platform speed at planetary scale; mRESVIA (RSV, approved May 2024) proved multi-pathogen commercial viability.</li>
+            <li><span class="highlight-strong">Oncology Frontier:</span> Pioneering Individualized Neoantigen Therapies (INT, mRNA-4157 / V940) with Merck in Phase 3 melanoma and lung cancer.</li>
+          </ul>
+        </div>
+
+        <div class="media-card">
+          <img src="assets/moderna_mrna_lnp.jpg" alt="Moderna mRNA Lipid Nanoparticle 3D Visualization">
+          <div class="media-caption">High-resolution scientific model of an mRNA-loaded Lipid Nanoparticle (LNP)</div>
+        </div>
+      </div>
+
+      <div class="grid-4" style="margin-top: 16px;">
+        <div class="stat-card">
+          <div class="stat-number">2010</div>
+          <div class="stat-label">Founded</div>
+          <div class="stat-desc">Cambridge, MA (Flagship Pioneering)</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number teal">66 Days</div>
+          <div class="stat-label">Velocity</div>
+          <div class="stat-desc">Viral sequence to Phase 1 clinical trial</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number amber">45+</div>
+          <div class="stat-label">Active Pipeline</div>
+          <div class="stat-desc">Vaccines, Oncology, Rare Diseases</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number coral">$2.25B</div>
+          <div class="stat-label">IP Resolution</div>
+          <div class="stat-desc">March 2026 Arbutus LNP Settlement</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 2: Company Profile & Operating Thesis -->
+    <section class="slide" data-index="2">
+      <div>
+        <div class="slide-meta">
+          <span class="slide-tag">02 | COMPANY PROFILE</span>
+        </div>
+        <h2 class="slide-title">Executive Summary: The "Biotech as Software" Vision</h2>
+        <p class="slide-subtitle">How Moderna departed from traditional empirical biopharma to build a reusable, digital biological operating system.</p>
+      </div>
+
+      <div class="grid-4" style="margin-bottom: 20px;">
+        <div class="stat-card">
+          <div class="stat-number">2010</div>
+          <div class="stat-label">Genesis</div>
+          <div class="stat-desc">Originated by Noubar Afeyan & Derrick Rossi</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number teal">$604M</div>
+          <div class="stat-label">Record 2018 IPO</div>
+          <div class="stat-desc">Largest biotech IPO valuation ($7.5B) at the time</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number amber">$2B+</div>
+          <div class="stat-label">Stealth Capital</div>
+          <div class="stat-desc">Raised pre-commercialization to engineer platform</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number coral">>1000x</div>
+          <div class="stat-label">Peak Valuation</div>
+          <div class="stat-desc">Surpassed $150B market cap at pandemic peak</div>
+        </div>
+      </div>
+
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-title">Foundational Thesis & Governance</div>
+          <ul class="bullet-list">
+            <li><span class="highlight-strong">Executive Leadership:</span> Stéphane Bancel joined in 2011 from bioMérieux, instilling a ruthless, tech-like operational velocity and high capital intensity.</li>
+            <li><span class="highlight-strong">Information Molecule Paradigm:</span> In traditional pharma, discovering Drug B does not make discovering Drug C any easier. In Moderna's model, mRNA is simply a string of code (A, C, G, U); modifying the code swaps the drug.</li>
+            <li><span class="highlight-strong">Pre-Commercial Strategic Alliances:</span> Secured non-dilutive R&D contracts with AstraZeneca (cardiovascular), Merck (cancer), Vertex (cystic fibrosis), and DARPA.</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <div class="card-title teal">Platform Flywheel Economics</div>
+          <ul class="bullet-list teal">
+            <li><span class="highlight-strong">Shared Delivery Architecture:</span> Once the 4-component LNP formulation is validated for safety and tolerability, dozens of distinct mRNAs use the identical vehicle.</li>
+            <li><span class="highlight-strong">Compounding Analytical Assets:</span> Regulatory dossiers, toxicology packages, and CMC release assays carry forward across therapeutic indications.</li>
+            <li><span class="highlight-strong">Norwood Foundry:</span> Integrated digital biomanufacturing facility in Massachusetts equipped with robotics and cloud-connected MES systems.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 3: The Core Biotech Innovation: mRNA Engineering -->
+    <section class="slide" data-index="3">
+      <div>
+        <div class="slide-meta">
+          <span class="slide-tag">03 | MOLECULAR INNOVATION</span>
+        </div>
+        <h2 class="slide-title">The Core Biotechnology Innovation: Synthetic mRNA Architecture</h2>
+        <p class="slide-subtitle">Overcoming decades-old immunogenic barriers to engineer stable, highly translatable genetic transcripts.</p>
+      </div>
+
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-title">1. Nucleoside Modification (m1Ψ)</div>
+          <ul class="bullet-list">
+            <li><span class="highlight-strong">The Biological Obstacle:</span> Natural immune sensors (Toll-like Receptors TLR3, TLR7, TLR8 and cytosolic RIG-I) recognize exogenous single-stranded RNA as viral pathogen-associated molecular patterns (PAMPs), inducing cytotoxic interferon cascades and cell death.</li>
+            <li><span class="highlight-strong">The Nobel Prize Breakthrough:</span> 100% substitution of uridine with N1-methylpseudouridine (m1Ψ) completely evades endosomal and cytosolic pattern recognition receptors.</li>
+            <li><span class="highlight-strong">Translational Gain:</span> Eliminates PKR activation, allowing host ribosomes to translate transcripts unimpeded.</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <div class="card-title teal">2. Cap 1 Enzymatic Mimicry</div>
+          <ul class="bullet-list teal">
+            <li><span class="highlight-strong">Synthetic Cap 1:</span> Incorporates enzymatically coupled m7GpppAm 5' cap analogs mimicking mammalian mature mRNA.</li>
+            <li><span class="highlight-strong">Ribosomal Recruitment:</span> Provides ultra-high affinity for eukaryotic translation initiation factor 4E (eIF4E).</li>
+            <li><span class="highlight-strong">Immune Evasion:</span> Prevents recognition by IFIT1 (interferon-induced protein that sequesters unmethylated viral Cap 0 transcripts).</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <div class="card-title amber">3. Codon & UTR Optimization</div>
+          <ul class="bullet-list amber">
+            <li><span class="highlight-strong">Algorithmic GC Enrichment:</span> Replaces rare, low-abundance tRNA codons with synonymous, high-frequency human codons to accelerate ribosome traversal.</li>
+            <li><span class="highlight-strong">Structure Elimination:</span> Eliminates internal secondary hairpin loops and cryptic splice sites.</li>
+            <li><span class="highlight-strong">Engineered 5' & 3' UTRs:</span> Derived from exceptionally stable human globin mRNAs to dictate intracellular half-life.</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <div class="card-title coral">4. Poly(A) Tail Engineering</div>
+          <ul class="bullet-list coral">
+            <li><span class="highlight-strong">Calibrated Length:</span> Standardized 100–120 adenine tail synthesized from linearized DNA template.</li>
+            <li><span class="highlight-strong">Circularization:</span> Binds Poly(A)-Binding Protein (PABP), bridging with eIF4G to circularize the transcript for continuous polysome recycling.</li>
+            <li><span class="highlight-strong">Exonuclease Protection:</span> Protects against rapid 3' to 5' deadenylation.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 4: Overcoming the Delivery Bottleneck: LNP Engineering -->
+    <section class="slide" data-index="4">
+      <div>
+        <div class="slide-meta">
+          <span class="slide-tag">04 | NANOTECHNOLOGY & DELIVERY</span>
+        </div>
+        <h2 class="slide-title">Overcoming the Delivery Barrier: 4-Component LNPs</h2>
+        <p class="slide-subtitle">Naked mRNA is degraded within seconds in serum; Lipid Nanoparticles provide protective encapsulation and cellular entry.</p>
+      </div>
+
+      <div class="grid-split">
+        <div class="card">
+          <div class="card-title">The 4-Component Formulation (~80-100 nm)</div>
+          <ul class="bullet-list">
+            <li><span class="highlight-strong">Ionizable Cationic Lipid (SM-102, ~50 mol%):</span> The crucial engine. Positively charged at acidic pH during microfluidic manufacturing to condense negatively charged mRNA; neutral at blood pH (7.4) to avoid systemic toxicity; re-protonates in acidic endosomes.</li>
+            <li><span class="highlight-strong">PEGylated Lipid (PEG2000-DMG, ~1.5 mol%):</span> Confers steric hydration barriers preventing particle aggregation in storage and regulating particle diameter.</li>
+            <li><span class="highlight-strong">Cholesterol (~38.5 mol%):</span> Fills interstitial bilayer gaps, stabilizing particle integrity and promoting cellular membrane fusion.</li>
+            <li><span class="highlight-strong">Helper Phospholipid (DSPC, ~10 mol%):</span> High-melting zwitterionic structural lipid creating a stable outer lamellar bilayer shell.</li>
+          </ul>
+        </div>
+
+        <div style="display: flex; flex-direction: column; gap: 14px;">
+          <div class="card" style="flex: 1;">
+            <div class="card-title teal">Mechanism of Endosomal Escape</div>
+            <ul class="bullet-list teal">
+              <li><span class="highlight-strong">ApoE Opsonization:</span> Injected LNPs adsorb serum ApoE, triggering LDLR-mediated endocytosis into target cells.</li>
+              <li><span class="highlight-strong">Proton Sponge Effect:</span> Acidic endosomal environment (pH ~5.5) reprotonates SM-102 tertiary amines.</li>
+              <li><span class="highlight-strong">Hexagonal Phase Transition:</span> Cationic lipids bind host anionic endosomal phospholipids, disrupting the vesicle and releasing intact mRNA into the cytosol.</li>
+            </ul>
+          </div>
+          <div class="media-card" style="height: 180px;">
+            <img src="assets/moderna_mrna_lnp.jpg" alt="LNP Architecture">
+            <div class="media-caption">4-Component LNP encapsulating synthetic mRNA</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 5: Commercial Milestone: Spikevax (mRNA-1273) -->
+    <section class="slide" data-index="5">
+      <div>
+        <div class="slide-meta">
+          <span class="slide-tag">05 | FLAGSHIP PRODUCT</span>
+        </div>
+        <h2 class="slide-title">Spikevax (mRNA-1273): Planetary Validation at Scale</h2>
+        <p class="slide-subtitle">The COVID-19 vaccine transformed global public health and established proof-of-concept for the entire mRNA modality.</p>
+      </div>
+
+      <div class="grid-4" style="margin-bottom: 20px;">
+        <div class="stat-card">
+          <div class="stat-number">42 Days</div>
+          <div class="stat-label">Sequence to Vial</div>
+          <div class="stat-desc">Jan 11 to Feb 24, 2020 record pace</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number teal">94.1%</div>
+          <div class="stat-label">Phase 3 Efficacy</div>
+          <div class="stat-desc">100% protection against severe disease/death</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number amber">>1 Billion</div>
+          <div class="stat-label">Doses Administered</div>
+          <div class="stat-desc">Worldwide global clinical deployment</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number coral">$37.8B</div>
+          <div class="stat-label">Cumulative 21-22 Sales</div>
+          <div class="stat-desc">Funded expansion across 40+ pipeline programs</div>
+        </div>
+      </div>
+
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-title">Scientific & Clinical Execution</div>
+          <ul class="bullet-list">
+            <li><span class="highlight-strong">Antigen Engineering:</span> Encoded the full-length SARS-CoV-2 spike protein locked in its prefusion conformation via 2 consecutive proline substitutions (2P mutations, co-designed with NIH VRC).</li>
+            <li><span class="highlight-strong">COVE Clinical Trial:</span> 30,000-participant blinded, placebo-controlled trial executed under rigorous FDA/EMA standards, demonstrating profound cellular and humoral immune protection.</li>
+            <li><span class="highlight-strong">Variant Adaptability:</span> Demonstrated platform agility by updating from ancestral monovalent to bivalent (BA.1, BA.4/5) and seasonal monovalent (XBB.1.5, KP.2) strains in under 60 days.</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <div class="card-title teal">Biopharmaceutical Paradigm Shift</div>
+          <ul class="bullet-list teal">
+            <li><span class="highlight-strong">Demolished Timeline:</span> Compressed the historic 10–15 year vaccine development timeline into 11 months without compromising statistical power.</li>
+            <li><span class="highlight-strong">Regulatory Modernization:</span> Established FDA Emergency Use Authorization (EUA) and standard Biologics License Application (BLA) precedents for mRNA technologies.</li>
+            <li><span class="highlight-strong">De-risking the Modality:</span> Proved to global regulators, healthcare providers, and the scientific community that synthetic mRNA is commercially viable, safe, and mass-manufacturable.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 6: Commercial Expansion: mRESVIA & Respiratory Combos -->
+    <section class="slide" data-index="6">
+      <div>
+        <div class="slide-meta">
+          <span class="slide-tag">06 | COMMERCIAL EXPANSION</span>
+        </div>
+        <h2 class="slide-title">mRESVIA & The Next-Gen Respiratory Franchise</h2>
+        <p class="slide-subtitle">Proving the platform's multi-pathogen commercial viability with FDA approval in May 2024 and combination pipeline.</p>
+      </div>
+
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-title">mRESVIA (mRNA-1345) Breakthrough</div>
+          <ul class="bullet-list">
+            <li><span class="highlight-strong">Historic FDA Approval (May 31, 2024):</span> Became the first mRNA vaccine approved for a disease other than COVID-19, indicated for RSV in adults aged 60+ (expanded to high-risk 18–59 in 2025).</li>
+            <li><span class="highlight-strong">Prefusion F Glycoprotein:</span> Encodes the Respiratory Syncytial Virus (RSV) fusion protein stabilized in prefusion conformation using identical LNP formulation chemistry.</li>
+            <li><span class="highlight-strong">ConquerRSV Phase 3 Efficacy:</span> 83.7% efficacy against RSV lower respiratory tract disease with 2+ symptoms; 82.8% against 3+ symptoms.</li>
+            <li><span class="highlight-strong">Prefilled Syringe Formulation:</span> The only RSV vaccine supplied in ready-to-use prefilled syringes, drastically simplifying clinical handling and eliminating reconstitution errors.</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <div class="card-title teal">Pan-Respiratory Combination Franchise</div>
+          <ul class="bullet-list teal">
+            <li><span class="highlight-strong">The Market Problem:</span> Patient "vaccine fatigue" and low compliance when receiving separate seasonal jabs for COVID-19, Influenza, and RSV.</li>
+            <li><span class="highlight-strong">mRNA-1083 (COVID-19 + Influenza Combination):</span> Successfully met all primary immunogenicity endpoints in pivotal Phase 3 trials in adults 50+.</li>
+            <li><span class="highlight-strong">Superior Immunogenicity:</span> Induced statistically significantly higher antibody responses than co-administered standard-dose and high-dose influenza vaccines and Spikevax.</li>
+            <li><span class="highlight-strong">Modular Formulation Power:</span> Blends multiple distinct mRNA transcripts inside a single LNP formulation without requiring formulation redesign or increased injection volume.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 7: Oncology Frontier: Individualized Neoantigen Therapies -->
+    <section class="slide" data-index="7">
+      <div>
+        <div class="slide-meta">
+          <span class="slide-tag">07 | IMMUNO-ONCOLOGY</span>
+        </div>
+        <h2 class="slide-title">Individualized Neoantigen Therapy (INT): mRNA-4157 / V940</h2>
+        <p class="slide-subtitle">Pioneering bespoke cancer vaccines in collaboration with Merck & Co. tailored specifically to each patient's tumor genome.</p>
+      </div>
+
+      <div class="grid-split">
+        <div class="card">
+          <div class="card-title">The Bespoke Medicine Workflow</div>
+          <ul class="bullet-list">
+            <li><span class="highlight-strong">Step 1 — Biopsy & Whole Exome Sequencing:</span> Surgical tumor resection and peripheral blood undergo Next-Gen Sequencing to identify patient-specific somatic mutations.</li>
+            <li><span class="highlight-strong">Step 2 — AI Neoantigen Prediction:</span> Machine-learning algorithm predicts HLA-binding affinity and T-cell immunogenicity, selecting up to 34 unique neoantigens per patient.</li>
+            <li><span class="highlight-strong">Step 3 — Custom mRNA Synthesis:</span> A single bespoke synthetic mRNA transcript encoding all 34 neoepitopes concatenated together is manufactured and encapsulated in LNPs in ~6 to 8 weeks.</li>
+            <li><span class="highlight-strong">Clinical Synergy:</span> Neoantigen vaccine primes and expands tumor-infiltrating CD8+ cytotoxic T cells; Keytruda (anti-PD-1) releases the immune checkpoint brake.</li>
+          </ul>
+        </div>
+
+        <div style="display: flex; flex-direction: column; gap: 14px;">
+          <div class="card" style="flex: 1;">
+            <div class="card-title teal">KEYNOTE-942 Phase 2b/3 Clinical Data</div>
+            <ul class="bullet-list teal">
+              <li><span class="highlight-strong">44% Reduction in Recurrence or Death:</span> INT + Keytruda demonstrated hazard ratio of 0.561 vs Keytruda monotherapy in resected stage III/IV high-risk melanoma.</li>
+              <li><span class="highlight-strong">65% Reduction in Distant Metastasis:</span> Durable immune memory prevented systemic metastasis.</li>
+              <li><span class="highlight-strong">Phase 3 Expansion:</span> Currently conducting Phase 3 trials in adjuvant melanoma, non-small cell lung cancer (NSCLC), and cutaneous squamous cell carcinoma.</li>
+            </ul>
+          </div>
+          <div class="media-card" style="height: 180px;">
+            <img src="assets/moderna_cancer_vaccine.jpg" alt="Personalized Cancer mRNA Immunotherapy">
+            <div class="media-caption">AI-driven neoantigen mRNA targeting cytotoxic T-cells</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 8: Advanced Manufacturing: The Digital Biotech Foundry -->
+    <section class="slide" data-index="8">
+      <div>
+        <div class="slide-meta">
+          <span class="slide-tag">08 | BIOMANUFACTURING PARADIGM</span>
+        </div>
+        <h2 class="slide-title">Agile Biomanufacturing: The Cell-Free Foundry Advantage</h2>
+        <p class="slide-subtitle">Contrasting classical mammalian bioreactor processes with Moderna's automated digital mRNA synthesis.</p>
+      </div>
+
+      <div class="card" style="margin-bottom: 20px;">
+        <table class="comp-table">
+          <thead>
+            <tr>
+              <th>Manufacturing Dimension</th>
+              <th>Classical Biologics (mAbs, Recombinant Proteins)</th>
+              <th>Moderna Cell-Free mRNA Platform</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Biological Host</strong></td>
+              <td>Live mammalian cell cultures (CHO cells, yeast) in 10,000L tanks</td>
+              <td>Cell-free enzymatic In Vitro Transcription (IVT)</td>
+            </tr>
+            <tr>
+              <td><strong>Batch Lead Time</strong></td>
+              <td>6 to 9 months per production campaign</td>
+              <td>4 to 6 weeks from digital sequence to released vial</td>
+            </tr>
+            <tr>
+              <td><strong>Process Scalability</strong></td>
+              <td>Bespoke scaling, prone to biological contamination and batch failure</td>
+              <td>Microfluidic impingement mixing; modular continuous skids</td>
+            </tr>
+            <tr>
+              <td><strong>Facility Flexibility</strong></td>
+              <td>Dedicated suites; extensive shutdown for line re-validation</td>
+              <td>Universal equipment handles vaccines, oncology, or rare disease</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-title">Digital Foundry Architecture (Norwood, MA)</div>
+          <ul class="bullet-list">
+            <li><span class="highlight-strong">Robotics & Cloud MES:</span> Fully digitized Manufacturing Execution System tracks every liquid transfer and microfluidic mixing parameter with real-time analytics.</li>
+            <li><span class="highlight-strong">Tangential Flow Filtration (TFF):</span> Proprietary purification removes double-stranded RNA (dsRNA) transcriptional side-products that trigger unwanted innate toxicity.</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <div class="card-title teal">Global Sovereign Network</div>
+          <ul class="bullet-list teal">
+            <li><span class="highlight-strong">Distributed Manufacturing Hubs:</span> Established modular biomanufacturing facilities in the United States, United Kingdom, Canada, and Australia.</li>
+            <li><span class="highlight-strong">100-Day Pandemic Mission:</span> Geographically distributed infrastructure capable of delivering localized variant-matched vaccines within 100 days of viral sequencing.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 9: Scientific & Biological Challenges -->
+    <section class="slide" data-index="9">
+      <div>
+        <div class="slide-meta">
+          <span class="slide-tag">09 | TECHNICAL ROADBLOCKS</span>
+        </div>
+        <h2 class="slide-title">Key Scientific, Biological & Delivery Challenges</h2>
+        <p class="slide-subtitle">Critical bottlenecks in biodistribution, repeat dosing tolerability, thermal stability, and transient kinetics.</p>
+      </div>
+
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-title coral">1. The Extra-Hepatic Delivery Trap</div>
+          <ul class="bullet-list coral">
+            <li><span class="highlight-strong">Liver Clearance:</span> Systemically administered standard LNPs adsorb ApoE from blood and accumulate predominantly in liver hepatocytes (>80% biodistribution).</li>
+            <li><span class="highlight-strong">Targeting Limitations:</span> Inefficient at reaching extra-hepatic tissues such as the lungs, bone marrow stem cells, central nervous system, and cardiac muscle.</li>
+            <li><span class="highlight-strong">Next-Gen Frontier:</span> Developing Selective Organ Targeting (SORT) lipids and antibody-conjugated LNPs to redirect tropism.</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <div class="card-title amber">2. Transient Expression Kinetics</div>
+          <ul class="bullet-list amber">
+            <li><span class="highlight-strong">Short Half-Life:</span> Unlike DNA gene therapies, mRNA is degraded by host cellular enzymes within 24 to 72 hours.</li>
+            <li><span class="highlight-strong">Chronic Disease Hurdle:</span> Ideal for vaccines and temporary gene editing, but metabolic enzyme replacement (propionic acidemia) demands lifelong, repeated bi-weekly intravenous infusions.</li>
+            <li><span class="highlight-strong">Circular RNA (circRNA):</span> Investigating closed-loop RNA lacking 5'/3' ends to resist exonuclease degradation and extend half-life.</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <div class="card-title coral">3. Reactogenicity & Tolerability</div>
+          <ul class="bullet-list coral">
+            <li><span class="highlight-strong">Systemic Inflammation:</span> High systemic doses trigger transient inflammatory cytokines (fever, chills, myalgia, fatigue).</li>
+            <li><span class="highlight-strong">Dose Ceiling:</span> Constrains the maximum tolerable dose for systemic therapeutic protein replacement applications.</li>
+            <li><span class="highlight-strong">Lipid Metabolism:</span> Developing next-generation biodegradable ionizable lipids with accelerated hepatic clearance.</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <div class="card-title amber">4. Anti-PEG Immunogenicity</div>
+          <ul class="bullet-list amber">
+            <li><span class="highlight-strong">Accelerated Blood Clearance (ABC):</span> Repeated administration of PEGylated LNPs can induce anti-PEG antibodies.</li>
+            <li><span class="highlight-strong">Efficacy Loss & Hypersensitivity:</span> Anti-PEG IgM can trigger complement activation-related pseudoallergy (CARPA) and rapid clearance of subsequent doses.</li>
+            <li><span class="highlight-strong">Alternative Coatings:</span> Formulating with non-PEG hydrophilic polymers and polysarcosine lipids.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 10: Legal, Regulatory & Intellectual Property Hurdles -->
+    <section class="slide" data-index="10">
+      <div>
+        <div class="slide-meta">
+          <span class="slide-tag">10 | LEGAL & REGULATORY LANDSCAPE</span>
+        </div>
+        <h2 class="slide-title">Intellectual Property Warfare & Regulatory Complexity</h2>
+        <p class="slide-subtitle">Navigating high-stakes patent battles, government disputes, and pioneering novel regulatory approval standards.</p>
+      </div>
+
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-title coral">Multi-Billion Dollar Patent Battles</div>
+          <ul class="bullet-list coral">
+            <li><span class="highlight-strong">Arbutus / Genevant $2.25B Landmark Settlement (March 2026):</span> Resolved years-long multi-jurisdictional litigation concerning foundational patents on 4-component LNP formulations. Moderna agreed to an upfront payment of $950M and up to $1.3B contingent, eliminating massive structural legal risk.</li>
+            <li><span class="highlight-strong">Moderna vs. Pfizer & BioNTech Litigation:</span> Multi-country patent lawsuits alleging Pfizer/BioNTech's Comirnaty infringed Moderna's patents on modified nucleoside chemistry and full-length spike protein design.</li>
+            <li><span class="highlight-strong">US NIH Inventorship Dispute:</span> Public friction over whether federal scientists at the NIH Vaccine Research Center should be credited as co-inventors on the core Spikevax sequence patent.</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <div class="card-title teal">Pioneering Regulatory Precedents</div>
+          <ul class="bullet-list teal">
+            <li><span class="highlight-strong">Strain-Change Accelerated Frameworks:</span> Worked with the FDA and EMA to establish a seasonal strain update pathway modeled after influenza, allowing rapid variant updates without repeating full 30,000-patient efficacy trials.</li>
+            <li><span class="highlight-strong">Individualized Medicine Review:</span> Breaking new ground with regulators for INT (mRNA-4157), where each patient's drug product possesses a completely unique chemical nucleotide sequence.</li>
+            <li><span class="highlight-strong">Generic & Biosimilar Moat:</span> The high technical barrier of microfluidic LNP manufacturing and proprietary lipid chemistry creates a formidable regulatory moat against rapid biosimilar entry.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 11: Market Disruption & Financial Trajectory -->
+    <section class="slide" data-index="11">
+      <div>
+        <div class="slide-meta">
+          <span class="slide-tag">11 | FINANCIAL & MARKET DYNAMICS</span>
+        </div>
+        <h2 class="slide-title">Market Impact: Revenue Transformation & Platform Economics</h2>
+        <p class="slide-subtitle">Managing the post-pandemic revenue normalization while harnessing software-like platform economics.</p>
+      </div>
+
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-title">Financial Hyper-Growth & The "Revenue Cliff"</div>
+          <ul class="bullet-list">
+            <li><span class="highlight-strong">Unprecedented Scaling:</span> Grew from $0 in commercial product sales pre-2020 to $18.5B in 2021 and $19.3B in 2022, achieving net profit margins exceeding 60%.</li>
+            <li><span class="highlight-strong">Post-Pandemic Adjustment:</span> Navigated a steep revenue contraction as pandemic emergency demand waned ($6.8B in 2023; stabilizing around $3B–$4B in 2024–2025).</li>
+            <li><span class="highlight-strong">Strategic Capital Deployment:</span> Reinvested pandemic windfall into an aggressive $4B+ annual R&D engine, funding 45+ clinical trials across oncology, latent viruses, and rare diseases.</li>
+            <li><span class="highlight-strong">Path to Long-Term Breakeven:</span> Growth driven by mRESVIA launch, combination seasonal vaccines (mRNA-1083), and commercialization of individualized cancer vaccines.</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <div class="card-title teal">Platform Economics: Low Marginal Cost</div>
+          <ul class="bullet-list teal">
+            <li><span class="highlight-strong">Traditional Pharma Diseconomies:</span> Each traditional small molecule or antibody requires customized synthesis, bespoke assays, unique bioreactors, and distinct toxicology packages ($1.5B+ per NME).</li>
+            <li><span class="highlight-strong">Moderna's Shared Fixed Capital:</span> Upfront billions spent perfecting the LNP delivery vehicle, lipid synthesis, and the Norwood automated foundry amortize across every pipeline drug.</li>
+            <li><span class="highlight-strong">Low Marginal Cost per Asset:</span> Adding program #45 simply requires modifying the digital nucleotide sequence in a computer file.</li>
+            <li><span class="highlight-strong">Higher Probability of Success (PTRS):</span> Clinical validation of the LNP carrier systematically de-risks delivery for subsequent programs.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 12: Conclusion & Strategic Takeaways -->
+    <section class="slide" data-index="12">
+      <div>
+        <div class="slide-meta">
+          <span class="slide-tag">12 | STRATEGIC SYNTHESIS</span>
+        </div>
+        <h2 class="slide-title">Conclusion: Strategic Takeaways for the Biotech Industry</h2>
+        <p class="slide-subtitle">Key lessons from Moderna's journey from a venture-backed concept to a cornerstone of 21st-century medicine.</p>
+      </div>
+
+      <div class="grid-3">
+        <div class="card">
+          <div class="card-title">1. Delivery is Paramount</div>
+          <ul class="bullet-list">
+            <li>Naked biological payload is therapeutically useless without an engineered delivery vehicle.</li>
+            <li>Moderna's multi-billion-dollar investments in ionizable lipid formulation (SM-102) and microfluidics were the true enabler of clinical success.</li>
+            <li>Next-generation biopharma value will accrue to firms that solve extra-hepatic tissue targeting.</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <div class="card-title teal">2. Platform Agility Wins</div>
+          <ul class="bullet-list teal">
+            <li>Modular, cell-free platforms radically outperform bespoke single-asset pipelines in speed and capital efficiency.</li>
+            <li>Compressing the discovery-to-clinic timeline from decades to weeks provides unmatched strategic resilience during health crises.</li>
+            <li>Platform economics decouple pipeline scalability from linear headcount and facility growth.</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <div class="card-title amber">3. Tech-Bio Convergence</div>
+          <ul class="bullet-list amber">
+            <li>Moderna succeeded by operating at the multidisciplinary nexus of molecular genetics, AI computational biology, nanotechnology, and robotic automation.</li>
+            <li>Proved that biology can be engineered with the rapid, iterative feedback loops of digital software.</li>
+            <li>mRNA is now an enduring, permanent third pillar of medicine alongside small molecules and biologics.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="card" style="margin-top: 16px; background: rgba(14, 165, 233, 0.08); border-color: rgba(14, 165, 233, 0.3);">
+        <p style="font-size: 12.5px; line-height: 1.5; color: #e2e8f0; text-align: center;">
+          <strong style="color: var(--accent-cyan);">Final Verdict:</strong> Moderna demonstrated that treating biotechnology as programmable software is no longer science fiction—it is a proven, industrial reality that will reshape medicine for generations.
+        </p>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Presenter Speaker Notes Drawer -->
+  <aside class="notes-drawer" id="notesDrawer">
+    <div class="notes-header">
+      <div class="notes-title">
+        <span>🎤</span> Presenter Talking Points & Speaker Script
+      </div>
+      <button class="btn-ctrl" id="closeNotesBtn">✕ Close</button>
+    </div>
+    <div class="notes-content" id="notesContent">
+      Loading speaker notes...
+    </div>
+  </aside>
+
+  <!-- Grid Overview Modal -->
+  <div class="grid-modal" id="gridModal">
+    <div class="grid-deck-container" id="gridContainer">
+      <!-- Generated via JS -->
+    </div>
+  </div>
+
+  <script>
+    // Speaker Notes Data mapped to each slide
+    const speakerNotes = {
+      1: `WELCOME & INTRODUCTORY REMARKS:
+Good morning / afternoon. Today, we present an in-depth case study of Moderna, Inc., examining how it redefined modern biotechnology.
+Rather than viewing drugs as single handcrafted molecules, Moderna established the concept of mRNA as biological software.
+In this presentation, we will examine:
+• The molecular biology behind the platform and nucleoside modification,
+• The lipid nanoparticle (LNP) engineering that enabled clinical delivery,
+• Real-world commercial milestones including Spikevax and mRESVIA (approved May 2024),
+• The oncology frontier in personalized cancer vaccines,
+• Foundational challenges including extra-hepatic delivery and the $2.25B Arbutus patent settlement,
+• And the strategic outlook for programmable genetic medicine.`,
+
+      2: `SLIDE 2 SPEAKER NOTES — COMPANY PROFILE & OPERATING THESIS:
+To understand Moderna, one must understand its origin. Founded in 2010 out of Flagship Pioneering by Noubar Afeyan and Derrick Rossi, Stéphane Bancel ran Moderna not like a traditional biotech, but like a high-growth tech platform.
+While typical biopharma spends 10 to 15 years and $1.5 billion per individual drug asset, Moderna invested over $2 billion in venture capital and partnerships building a reusable infrastructure before ever releasing a commercial product.
+When SARS-CoV-2 emerged, they proved that a digital sequence in a computer file could become a physical vialed drug in just 42 days, entering human clinical trials in 66 days.
+Today, their pipeline exceeds 45 clinical programs across infectious disease, oncology, and rare metabolic conditions.`,
+
+      3: `SLIDE 3 SPEAKER NOTES — MOLECULAR INNOVATION:
+Let's dive into the molecular biology innovation. For 30 years, scientists knew mRNA carried instructions, but introducing foreign synthetic mRNA in vivo was lethal—it triggered massive innate immune shock via endosomal TLR7 and TLR8.
+The breakthrough—building on Katalin Karikó and Drew Weissman's Nobel Prize-winning work—was replacing 100% of standard uridine with N1-methylpseudouridine (m1Ψ).
+Furthermore, Moderna algorithmically optimizes the 5 structural domains:
+1. The synthetic Cap 1 structure for ribosome docking,
+2. The 5' UTR for scanning without hairpin pauses,
+3. The coding sequence with synonymous high-frequency human codons,
+4. The 3' UTR derived from stable human globin mRNAs,
+5. And a calibrated poly(A) tail that forms a circular translating machine inside human cells.`,
+
+      4: `SLIDE 4 SPEAKER NOTES — NANOTECHNOLOGY & DELIVERY:
+In biotechnology, there is an axiom: 'Delivery is the drug.' Bare mRNA injected into the bloodstream is torn apart by RNase enzymes within milliseconds and repelled by cell membranes.
+Moderna's four-component lipid nanoparticle is a masterpiece of biophysical engineering:
+The ionizable lipid SM-102 acts as a chemical chameleon:
+• It is positively charged in the lab at pH 5 to encapsulate the negatively charged RNA,
+• Neutral at physiological pH 7.4 in your blood so it doesn't pop red blood cells,
+• And turns positively charged again inside the endosome (pH 5.5), ripping open the endosomal membrane like a Trojan horse so the mRNA escapes into the cytoplasm for translation.
+The remaining lipids—PEGylated lipid, cholesterol, and DSPC—ensure steric stability, membrane fusion, and structural integrity.`,
+
+      5: `SLIDE 5 SPEAKER NOTES — SPIKEVAX COMMERCIAL MILESTONE:
+Spikevax was not just a commercial product; it was an existential proof-of-concept for an entire scientific discipline.
+Prior to 2020, cynics claimed mRNA was too fragile, too immunogenic, or impossible to mass manufacture.
+Within 11 months, Moderna enrolled 30,000 participants in the Phase 3 COVE trial, demonstrated 94.1% efficacy against symptomatic infection and 100% protection against death or hospitalization, and delivered over a billion doses worldwide.
+It generated over $37 billion in revenue across 2021 and 2022, creating the war chest that now finances the next generation of cancer and rare disease therapeutics.`,
+
+      6: `SLIDE 6 SPEAKER NOTES — COMMERCIAL EXPANSION (mRESVIA & COMBOS):
+A critical question faced by investors and analysts was: Is Moderna a one-hit wonder?
+On May 31, 2024, Moderna answered decisively with FDA approval of mRESVIA for RSV in older adults (expanded in 2025). This was the first time in history that an mRNA vaccine was approved for a non-COVID condition, proving platform programmability.
+Furthermore, Moderna solved clinical ease-of-use by launching mRESVIA in prefilled syringes.
+Looking forward, the true commercial crown jewel is mRNA-1083: a combination Flu plus COVID shot that demonstrated superior antibody responses compared to licensed standalone vaccines in Phase 3. A single annual jab solves vaccine fatigue and locks in recurring annual seasonal revenue.`,
+
+      7: `SLIDE 7 SPEAKER NOTES — IMMUNO-ONCOLOGY & INT:
+Now we arrive at the most scientifically breathtaking application of Moderna's platform: Individualized Neoantigen Therapy (INT), partnered with Merck.
+No two cancers have the same genetic mutations. With mRNA-4157, when a patient has a tumor surgically resected, their tumor DNA is sequenced, an AI model picks the 34 most immunogenic mutations, and within 6 to 8 weeks, a completely unique mRNA vaccine is synthesized specifically for that individual patient.
+In Phase 2b melanoma trials (KEYNOTE-942), combining this with Keytruda slashed recurrence or death by 44% and distant metastasis by 65%.
+Phase 3 trials are now actively enrolling in melanoma and non-small cell lung cancer. This represents the dawn of true personalized genetic oncology.`,
+
+      8: `SLIDE 8 SPEAKER NOTES — DIGITAL BIOMANUFACTURING FOUNDRY:
+To appreciate Moderna's margins and speed, you have to look at manufacturing chemistry. Traditional biopharma manufactures proteins inside living cells—hamster ovary (CHO) cells—which are notoriously temperamental, sensitive to temperature and contamination, and require 6 to 9 months per run.
+Moderna's process is completely cell-free. They mix linearized DNA, T7 polymerase, and nucleotide building blocks in a continuous enzymatic reactor.
+At their Norwood foundry, microfluidic jets smash the mRNA and lipids together at high velocity to form uniform 80-nanometer spheres.
+The exact same equipment produces an oncology drug on Monday and an RSV vaccine on Friday, compressing batch lead times down to 4 to 6 weeks.`,
+
+      9: `SLIDE 9 SPEAKER NOTES — SCIENTIFIC & BIOLOGICAL ROADBLOCKS:
+An objective case analysis must confront technical vulnerabilities.
+The foremost challenge is the 'liver trap': when you inject standard LNPs intravenously, they absorb ApoE from blood and get cleared by the liver. That's fine for liver enzyme deficiency, but useless if you want to target brain tumors, heart tissue, or lungs.
+Second, mRNA expression is temporary—lasting only a few days. While perfect for vaccines, treating a chronic metabolic disease requires repeated lifelong dosing, which risks triggering anti-PEG antibodies, inflammation, and reduced therapeutic efficacy over time.
+Overcoming these delivery barriers with SORT lipids and circRNA is Moderna's central scientific focus.`,
+
+      10: `SLIDE 10 SPEAKER NOTES — LEGAL & IP LANDSCAPE:
+In biotechnology, patent defense is as critical as laboratory discovery. Moderna was entangled in high-stakes intellectual property warfare.
+Most notably, Arbutus Biopharma and Genevant claimed foundational ownership over four-component LNP formulation ratios. Just in March 2026, Moderna reached a historic $2.25 billion global settlement, paying $950 million upfront to finally remove that legal overhang.
+At the same time, Moderna continues to litigate against Pfizer and BioNTech over modified nucleoside IP.
+On the regulatory side, Moderna successfully worked with the FDA to treat strain updates like annual flu shots, creating a regulatory expressway for recurring commercial updates.`,
+
+      11: `SLIDE 11 SPEAKER NOTES — MARKET IMPACT & FINANCIAL TRAJECTORY:
+Let's evaluate Moderna's financial transformation. In 2019, Moderna had zero commercial product sales. By 2022, they recorded nearly $20 billion in annual revenue.
+Inevitably, as pandemic crisis urgency faded, revenues faced a steep cliff down to endemic levels.
+Moderna has responded by investing over $4B annually in R&D to unlock long-term multi-product growth.
+Here is where platform economics shine: unlike traditional pharma, where each drug requires completely new manufacturing plants and custom chemistry, Moderna's platform shares the same LNP formulation, the same Norwood facility, and the same safety data. This drastically lowers the marginal cost of developing asset number 45 compared to asset number 1.`,
+
+      12: `SLIDE 12 SPEAKER NOTES — STRATEGIC SYNTHESIS & CONCLUSION:
+In conclusion, Moderna's journey offers three timeless lessons for biotechnology leaders:
+First, delivery is paramount—formulation chemistry was the true enabler of mRNA's triumph.
+Second, platform models beat bespoke pipelines: by treating mRNA as software, Moderna achieved compounding velocity and capital efficiency.
+And third, the future of biotechnology lies in multidisciplinary convergence: computation, synthetic biology, nanotechnology, and robotics.
+Moderna did not just develop vaccines; it permanently altered how humanity creates medicine.
+Thank you for your time, and I look forward to your questions.`
+    };
+
+    // State
+    const slides = Array.from(document.querySelectorAll('.slide'));
+    const totalSlides = slides.length;
+    let currentSlide = 1;
+
+    // Elements
+    const counterEl = document.getElementById('slideCounter');
+    const progressEl = document.getElementById('progressBar');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    const notesToggle = document.getElementById('notesToggle');
+    const notesDrawer = document.getElementById('notesDrawer');
+    const notesContent = document.getElementById('notesContent');
+    const closeNotesBtn = document.getElementById('closeNotesBtn');
+    const gridToggle = document.getElementById('gridToggle');
+    const gridModal = document.getElementById('gridModal');
+    const gridContainer = document.getElementById('gridContainer');
+    const printBtn = document.getElementById('printBtn');
+
+    // Update Display
+    function showSlide(index) {
+      if (index < 1) index = 1;
+      if (index > totalSlides) index = totalSlides;
+      currentSlide = index;
+
+      slides.forEach((s, idx) => {
+        if (idx + 1 === currentSlide) {
+          s.classList.add('active');
+        } else {
+          s.classList.remove('active');
+        }
+      });
+
+      counterEl.textContent = `SLIDE ${String(currentSlide).padStart(2, '0')} / ${String(totalSlides).padStart(2, '0')}`;
+      progressEl.style.width = `${(currentSlide / totalSlides) * 100}%`;
+
+      // Update speaker notes
+      notesContent.textContent = speakerNotes[currentSlide] || "No notes available for this slide.";
+
+      // Update grid thumbnails current status
+      document.querySelectorAll('.grid-slide-thumb').forEach((thumb, idx) => {
+        if (idx + 1 === currentSlide) {
+          thumb.classList.add('current');
+        } else {
+          thumb.classList.remove('current');
+        }
+      });
+    }
+
+    // Build Grid Modal
+    function buildGrid() {
+      gridContainer.innerHTML = '';
+      slides.forEach((slide, idx) => {
+        const slideNum = idx + 1;
+        const tag = slide.querySelector('.slide-tag')?.textContent || `Slide ${slideNum}`;
+        const title = slide.querySelector('.slide-title')?.textContent || 'Untitled Slide';
+        const subtitle = slide.querySelector('.slide-subtitle')?.textContent || '';
+
+        const thumb = document.createElement('div');
+        thumb.className = `grid-slide-thumb ${slideNum === currentSlide ? 'current' : ''}`;
+        thumb.innerHTML = `
+          <div class="thumb-num">${tag}</div>
+          <div class="thumb-title">${title}</div>
+          <div class="thumb-subtitle">${subtitle}</div>
+        `;
+        thumb.addEventListener('click', () => {
+          showSlide(slideNum);
+          gridModal.classList.remove('open');
+          gridToggle.classList.remove('active');
+        });
+        gridContainer.appendChild(thumb);
+      });
+    }
+
+    // Event Listeners
+    prevBtn.addEventListener('click', () => showSlide(currentSlide - 1));
+    nextBtn.addEventListener('click', () => showSlide(currentSlide + 1));
+
+    notesToggle.addEventListener('click', () => {
+      notesDrawer.classList.toggle('open');
+      notesToggle.classList.toggle('active');
+    });
+
+    closeNotesBtn.addEventListener('click', () => {
+      notesDrawer.classList.remove('open');
+      notesToggle.classList.remove('active');
+    });
+
+    gridToggle.addEventListener('click', () => {
+      gridModal.classList.toggle('open');
+      gridToggle.classList.toggle('active');
+      if (gridModal.classList.contains('open')) {
+        buildGrid();
+      }
+    });
+
+    printBtn.addEventListener('click', () => {
+      window.print();
+    });
+
+    // Keyboard Shortcuts
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight' || e.key === 'ArrowDown' || e.key === ' ') {
+        e.preventDefault();
+        showSlide(currentSlide + 1);
+      } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp' || e.key === 'Backspace') {
+        e.preventDefault();
+        showSlide(currentSlide - 1);
+      } else if (e.key.toLowerCase() === 's') {
+        notesDrawer.classList.toggle('open');
+        notesToggle.classList.toggle('active');
+      } else if (e.key.toLowerCase() === 'g') {
+        gridModal.classList.toggle('open');
+        gridToggle.classList.toggle('active');
+        if (gridModal.classList.contains('open')) buildGrid();
+      } else if (e.key.toLowerCase() === 'p') {
+        window.print();
+      } else if (e.key.toLowerCase() === 'f') {
+        if (!document.fullscreenElement) {
+          document.documentElement.requestFullscreen().catch(() => {});
+        } else {
+          document.exitFullscreen().catch(() => {});
+        }
+      } else if (e.key === 'Home') {
+        showSlide(1);
+      } else if (e.key === 'End') {
+        showSlide(totalSlides);
+      }
+    });
+
+    // Initialize
+    showSlide(1);
+    buildGrid();
+  </script>
+</body>
+</html>
